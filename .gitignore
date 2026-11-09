@@ -1,0 +1,22 @@
+# Build
+target/
+build/
+
+# Segredos e configuração local (NUNCA versionar)
+.env
+*.env.local
+
+# IDEs
+.idea/
+*.iml
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+.classpath
+.project
+.settings/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

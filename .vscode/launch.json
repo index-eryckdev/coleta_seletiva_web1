@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Coleta Seletiva (API)",
+      "request": "launch",
+      "mainClass": "com.coletaseletiva.ColetaSeletivaApplication",
+      "projectName": "coleta-seletiva",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
