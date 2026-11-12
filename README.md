@@ -49,10 +49,18 @@ Get-Content .env | ForEach-Object { if ($_ -match '^\s*([^#=]+)=(.*)$') { Set-It
 mvn spring-boot:run
 ```
 
+- Aplicação web em <http://127.0.0.1:8080/>
 - Estado da API em <http://127.0.0.1:8080/api/status>
 - Swagger UI em <http://127.0.0.1:8080/swagger-ui.html> e especificação em <http://127.0.0.1:8080/v3/api-docs>
 
-Os cabeçalhos da API selecionam atores fictícios sem autenticação. Use apenas dados fictícios no ambiente acadêmico local.
+## Demonstrar o fluxo
+
+1. Consulte pontos e materiais como visitante. A Cooperativa EcoVida oferece recolhimento domiciliar em Aracaju.
+2. No botão de perfil, selecione **Morador 1** (Ana) e abra **Solicitar recolhimento** na cooperativa. Escolha um endereço e adicione papel e plástico.
+3. Troque para **Operador 1** (Maria). Abra o **Painel do operador**, selecione a solicitação, agende uma data futura e inicie o recolhimento. Conclua informando as quantidades efetivas.
+4. Volte ao **Morador 1** para ver o histórico. Use **Administrador** para verificar o resumo e gerenciar materiais, pontos e operadores.
+
+O protótipo usa seleção de atores fictícios sem autenticação. A aplicação escuta somente no endereço local por padrão. Use dados fictícios e mantenha a demonstração no ambiente acadêmico local.
 
 ## Testar e empacotar
 
@@ -71,9 +79,12 @@ A suíte usa PostgreSQL de verdade. Use um banco descartável dedicado para os t
 | --- | --- |
 | `src/main/java/com/coletaseletiva/` | Controllers REST, DTOs, serviços transacionais, entidades, repositórios e tratamento de erros |
 | `src/main/resources/db/migration/` | Esquema Flyway, dados fictícios e evolução do modelo |
+| `src/main/resources/static/` | Interface responsiva em HTML, CSS e JavaScript modular, servida pelo Spring Boot |
 | `src/test/` | Testes de integração HTTP e PostgreSQL |
 | `scripts/` | Ensaio reproduzível de desempenho |
 
 - [Contrato da API com exemplos](docs/API.md)
+- [Modelo, regras e decisões](docs/PROJETO.md)
+- [Resultados das validações](docs/VALIDACAO.md)
 
 O Hibernate valida o esquema. Novas mudanças no banco entram por migrações Flyway numeradas. O fluxo Git da equipe usa branches por módulo, commits com a conta responsável e pull requests para revisão em `main`.

@@ -1,0 +1,19 @@
+{
+  "navegador": "156.0.8078.79",
+  "casos": [
+    {
+      "viewport_px": 1366,
+      "protocolo": "CS-000000000001",
+      "fluxo": "conclusão com quantidades efetivas",
+      "rolagem_horizontal": false,
+      "erros_javascript": 0
+    },
+    {
+      "viewport_px": 360,
+      "protocolo": "CS-000000000002",
+      "fluxo": "cancelamento confirmado",
+      "rolagem_horizontal": false,
+      "erros_javascript": 0
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consulte pontos de coleta seletiva e solicite recolhimento de materiais recicláveis.">
+  <meta name="theme-color" content="#143b30">
+  <title>Coleta Seletiva | IFS</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <a href="#conteudo" class="skip">Ir para o conteúdo</a>
+  <header class="topbar">
+    <div class="container topbar-content">
+      <a class="marca" href="#pontos"><span class="marca-icone" aria-hidden="true">♻</span>Coleta Seletiva</a>
+      <nav id="navegacao" aria-label="Navegação principal"></nav>
+      <button type="button" id="perfil" class="botao secundario compacto">Escolher perfil</button>
+    </div>
+  </header>
+
+  <dialog id="seletor-perfil" aria-labelledby="titulo-perfil">
+    <form id="form-perfil">
+      <div class="linha entre">
+        <h2 id="titulo-perfil">Perfil de demonstração</h2>
+        <button type="button" id="fechar-perfil" class="botao secundario compacto">Fechar</button>
+      </div>
+      <p class="nota">Use os perfis fictícios para navegar pelo projeto acadêmico.</p>
+      <label class="campo" for="tipo-perfil">Perfil
+        <select id="tipo-perfil" name="tipo">
+          <option value="">Visitante</option>
+          <option value="MORADOR">Morador</option>
+          <option value="OPERADOR">Operador</option>
+          <option value="ADMINISTRADOR">Administrador</option>
+        </select>
+      </label>
+      <label class="campo" for="id-perfil" id="campo-id" hidden>Identificador
+        <input id="id-perfil" name="id" type="number" min="1" step="1">
+        <span class="nota" id="ajuda-perfil"></span>
+      </label>
+      <div class="linha entre">
+        <a id="abrir-cadastro" href="#cadastro">Cadastrar morador</a>
+        <button type="submit" class="botao">Usar perfil</button>
+      </div>
+    </form>
+  </dialog>
+
+  <main class="container" id="conteudo" tabindex="-1" aria-busy="true">
+    <p class="nota">Carregando a aplicação…</p>
+  </main>
+  <footer class="rodape">
+    <div class="container linha entre">
+      <span>Programação Web I · IFS Campus Lagarto</span>
+      <a href="/swagger-ui.html">Documentação da API</a>
+    </div>
+  </footer>
+</body>
+</html>
