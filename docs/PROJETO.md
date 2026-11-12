@@ -80,3 +80,12 @@ A coluna de versão usa `@Version`. Correções e mudanças de situação atuali
 | RNF02 | Interface responsiva, formulários, mensagens de campo e confirmação de cancelamento |
 | RNF04 | Paginação de até 100, índices e ensaio com 1.000 solicitações |
 | RNF07–RNF08 | Swagger, exemplos, dados fictícios, suíte de integração e evidências |
+
+## Autoria do módulo de materiais
+
+Pedro Henrique dos Santos Lino desenvolveu o módulo de materiais, que permite cadastrar, consultar, atualizar, inativar e reativar materiais recicláveis. O módulo foi integrado à API no [commit ae5c43d](https://github.com/index-eryckdev/coleta_seletiva_web1/commit/ae5c43d851761b500cbaef28d423e6220a360128).
+
+- Entidade de domínio e unidades de medida. [Material](../src/main/java/com/coletaseletiva/entity/Material.java) · [UnidadeMedida](../src/main/java/com/coletaseletiva/entity/UnidadeMedida.java)
+- Persistência e consultas do catálogo. [MaterialRepository](../src/main/java/com/coletaseletiva/repository/MaterialRepository.java)
+- Regras de cadastro, filtros e disponibilidade. [MaterialService](../src/main/java/com/coletaseletiva/service/MaterialService.java)
+- Endpoints do catálogo e DTOs de entrada e saída de materiais. [MaterialController](../src/main/java/com/coletaseletiva/controller/MaterialController.java) · [CadastroDtos](../src/main/java/com/coletaseletiva/dto/CadastroDtos.java)
