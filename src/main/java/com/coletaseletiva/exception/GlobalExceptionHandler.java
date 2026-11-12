@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -71,6 +72,23 @@ public class GlobalExceptionHandler {
         return montar(HttpStatus.BAD_REQUEST, "PARAMETRO_AUSENTE", "Parâmetro obrigatório ausente.", req, erros);
     }
 
+    @ExceptionHandler(EntradaInvalidaException.class)
+    public ResponseEntity<ApiError> entradaInvalida(EntradaInvalidaException ex, HttpServletRequest req) {
+        return montar(HttpStatus.BAD_REQUEST, "VALIDACAO", ex.getMessage(), req,
+                List.of(new CampoErro(ex.getCampo(), ex.getMessage())));
+    }
+
+    @ExceptionHandler(AcessoDemoException.class)
+    public ResponseEntity<ApiError> acessoDemo(AcessoDemoException ex, HttpServletRequest req) {
+        return montar(HttpStatus.FORBIDDEN, "CONTEXTO_ATOR_INVALIDO", ex.getMessage(), req, List.of());
+    }
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public ResponseEntity<ApiError> midiaInvalida(HttpMediaTypeNotSupportedException ex, HttpServletRequest req) {
+        return montar(HttpStatus.UNSUPPORTED_MEDIA_TYPE, "MIDIA_NAO_SUPORTADA",
+                "Use Content-Type: application/json.", req, List.of());
+    }
+
     // ---------- 404 ----------
 
     @ExceptionHandler(RecursoNaoEncontradoException.class)
@@ -99,7 +117,7 @@ public class GlobalExceptionHandler {
         return montar(HttpStatus.CONFLICT, "REGRA_NEGOCIO", ex.getMessage(), req, List.of());
     }
 
-    @ExceptionHandler({ ObjectOptimisticLockingFailureException.class, OptimisticLockException.class })
+    @ExceptionHandler({ ObjectOptimisticLockingFailureException.class, OptimisticLockException.class, ConflitoVersaoException.class })
     public ResponseEntity<ApiError> conflitoVersao(Exception ex, HttpServletRequest req) {
         return montar(HttpStatus.CONFLICT, "CONFLITO_VERSAO",
                 "O registro foi alterado por outra operação. Recarregue e tente novamente.", req, List.of());
@@ -107,7 +125,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiError> integridade(DataIntegrityViolationException ex, HttpServletRequest req) {
-        log.warn("Violação de integridade em {}: {}", req.getRequestURI(), ex.getMostSpecificCause().getMessage());
+        log.warn("Violação de integridade em {}", req.getRequestURI());
         return montar(HttpStatus.CONFLICT, "CONFLITO_DADOS",
                 "A operação viola uma restrição de dados (duplicidade ou vínculo existente).", req, List.of());
     }
